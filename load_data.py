@@ -14,5 +14,6 @@ train_dataset = datasets.FashionMNIST(
 train_load = DataLoader(
     train_dataset,
     batch_size=BATCH_SIZE,
+    num_workers=4,
     shuffle=True
 )
