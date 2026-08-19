@@ -47,3 +47,8 @@ class Model(nn.Module):
         z = self.reparam(mu, logvar)
         x_regen = self.decoder(z)
         return x_regen, mu, logvar
+
+def loss_function(x, x_reg, mu, logvar):
+    reg_loss = F.binary_cross_entropy(x_reg, x, reduction="sum")
+    kl_div = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
+    return reg_loss + kl_div
