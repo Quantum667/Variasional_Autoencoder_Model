@@ -2,9 +2,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
-from torch.utils.data import DataLoader
-from torchvision import datasets
-from torchvision.transforms import transforms
 
 from model import Model, loss_function
 from config import EPOCHS, LEARNING_RATE
@@ -28,7 +25,7 @@ if __name__ == "__main__":
 
             optimizer.zero_grad()
             x_reg, mu, logvar = model(x)
-            loss = loss_function(x_reg, x, mu, logvar)
+            loss = loss_function(x, x_reg, mu, logvar)
             loss.backward()
             optimizer.step()
 

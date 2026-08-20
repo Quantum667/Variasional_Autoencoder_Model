@@ -35,7 +35,7 @@ class Model(nn.Module):
         return z
 
     def decoder(self, z):
-        x = F.relu(self.f_decode(x))
+        x = F.relu(self.f_decode(z))
         x = x.view(-1, 64, 7, 7)
         x = F.relu(self.decode1(x))
         x = torch.sigmoid(self.decode2(x))

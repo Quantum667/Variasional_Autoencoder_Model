@@ -6,6 +6,7 @@ __pycache__/
 env/
 venv/
 ENV/
+result/
 
 .ipynb_checkpoints/
 *.ipynb_checkpoints
