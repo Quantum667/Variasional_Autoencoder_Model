@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from model import Model
 
 def generate(path, num_img=16):
-    model = Model(dim=16)
+    model = Model(dim=64)
     model.load_state_dict(torch.load(path, map_location="cpu"))
     model.eval()
 

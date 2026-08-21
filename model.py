@@ -4,7 +4,7 @@ import torch.nn.functional as F
 
 
 class Model(nn.Module):
-    def __init__(self, dim=16):
+    def __init__(self, dim=64):
         super().__init__()
 
         self.encode1 = nn.Conv2d(3, 32, kernel_size=4, stride=2, padding=1)
