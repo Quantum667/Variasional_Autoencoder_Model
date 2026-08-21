@@ -8,14 +8,15 @@ def generate(path, num_img=16):
     model.load_state_dict(torch.load(path, map_location="cpu"))
     model.eval()
 
-    z = torch.randn(num_img, 16)
+    z = torch.randn(num_img, 64)
 
     with torch.no_grad():
         gen = model.decoder(z)
 
     fig, axes = plt.subplots(4, 4, figsize=(8, 8))
     for i, ax in enumerate(axes.flat):
-        ax.imshow(gen[i].squeeze(), cmap="gray")
+        img = gen[i].permute(1, 2, 0).numpy()
+        ax.imshow(img)
         ax.axis("off")
 
     os.makedirs("result", exist_ok=True)
@@ -26,4 +27,4 @@ def generate(path, num_img=16):
     plt.show()
 
 if __name__ == "__main__":
-    generate("VAE_model.pth", num_img=16)
+    generate("vae_cifar10_epoch_50.pth", num_img=16)
